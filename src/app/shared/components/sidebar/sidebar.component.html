@@ -1,0 +1,19 @@
+<nav class="sidebar" [ngClass]="{sidebarPushRight: isActive}">
+    <ul class="list-group">
+        <a routerLink="/dashboard" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-dashboard"></i>&nbsp;Dashboard
+        </a>
+        <a [routerLink]="['/charts']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-map-o"></i>&nbsp;Agregar Lugar
+        </a>
+        <a [routerLink]="['/tables']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-institution"></i>&nbsp;Ver Lugares Amigos
+        </a>
+        <a [routerLink]="['/forms']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-group"></i>&nbsp;Ver Amigos
+        </a>
+        <a [routerLink]="['/login']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+            <i class="fa fa-fw fa-power-off"></i>&nbsp;Desconectar
+        </a>
+    </ul>
+</nav>
