@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import {RequestService} from "../../../request.service";
+import { Headers, RequestOptions } from '@angular/http';
 
 @Component({
     selector: 'app-sidebar',
@@ -8,9 +10,38 @@ import { Component } from '@angular/core';
 export class SidebarComponent {
     isActive = false;
     showMenu = '';
+
+
+    constructor( private requestService: RequestService) {
+        this.requestService;
+    }
+
     eventCalled() {
         this.isActive = !this.isActive;
     }
+
+    logout(){
+
+        this.requestService.logoutSession(
+            'http://localhost:3000/logout',
+            {
+                "email": localStorage.getItem("email")
+            },
+            new RequestOptions({ headers: new Headers({ 'Content-Type': 'application/json' }) })
+        )
+            .subscribe(
+                logoutS=>{
+                },
+                err => { console.log(err);}
+            )
+
+        localStorage.clear();
+
+    }
+
+
+
+
     addExpandClass(element: any) {
         if (element === this.showMenu) {
             this.showMenu = '0';

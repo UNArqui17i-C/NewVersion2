@@ -2,22 +2,23 @@
     <div class="row">
         <div class="col-md-4 push-md-4">
             <img src="assets/images/logo.png" width="150px" />
-            <h1>Mappache</h1>
-            <form role="form">
+            <h1>Registrate en Mappache</h1>
+            <form role="form" (submit)="doSingIn()">
                 <div class="form-content">
                     <div class="form-group">
-                        <input type="text" class="form-control input-underline input-lg" id="" placeholder="Correo Electronico">
+                        <input type="text" [(ngModel)]="formEmail" name="formEmail" class="form-control input-underline input-lg" id="" placeholder="Correo Electronico">
                     </div>
 
                     <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="Contraseña">
+                        <input type="password" [(ngModel)]="formPassword" name="formPassword" class="form-control input-underline input-lg" id="" placeholder="Contraseña">
                     </div>
-                    <div class="form-group">
-                        <input type="password" class="form-control input-underline input-lg" id="" placeholder="Confirme Contraseña">
-                    </div>
+
                 </div>
-                <a class="btn rounded-btn" [routerLink]="['/dashboard']"> Registrarse </a>&nbsp;
+                <!--<a class="btn rounded-btn" [routerLink]="['/dashboard']"> Registrarse </a>&nbsp;
                 <a class="btn rounded-btn" [routerLink]="['/login']"> Conectarse </a>
+                -->
+                <input type="submit" class="btn rounded-btn" value="Resgistrase">
+
             </form>
         </div>
     </div>

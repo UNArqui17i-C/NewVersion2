@@ -12,7 +12,7 @@
         <a [routerLink]="['/forms']" [routerLinkActive]="['router-link-active']" class="list-group-item">
             <i class="fa fa-group"></i>&nbsp;Ver Amigos
         </a>
-        <a [routerLink]="['/login']" [routerLinkActive]="['router-link-active']" class="list-group-item">
+        <a [routerLink]="['/login']" [routerLinkActive]="['router-link-active']" (click)="logout()" class="list-group-item">
             <i class="fa fa-fw fa-power-off"></i>&nbsp;Desconectar
         </a>
     </ul>

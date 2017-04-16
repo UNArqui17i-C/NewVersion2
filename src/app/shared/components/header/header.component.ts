@@ -7,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
     constructor() { }
-    ngOnInit() {}
+
+
+    ngOnInit() {
+
+    }
 
     toggleSidebar() {
         const dom: any = document.querySelector('body');
