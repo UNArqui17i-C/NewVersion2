@@ -45,6 +45,17 @@ export class RequestService {
             .catch((error: any) => Observable.throw(error.json().error || 'Server error sing In'));
     }
 
+    getPlaces(baseUrl): Observable<any> {
+        return this.http.get( baseUrl)
+            .map((response: Response) => response.json())
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error getPlaces'));
+    }
+
+    createPlaces(baseUrl,body,options): Observable<any>{
+        return this.http.post(baseUrl,body,options)
+            .map((response: Response) => response.json())
+            .catch((error: any) => Observable.throw(error.json().error || 'Server error create Places'));
+    }
 
 
 }

@@ -6,11 +6,13 @@ import { HttpModule } from '@angular/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import {RequestService} from "./request.service";
+import { PlacesRequestComponent } from './places-request/places-request.component';
 
 
 @NgModule({
     declarations: [
         AppComponent,
+        PlacesRequestComponent,
     ],
     imports: [
         BrowserModule,
