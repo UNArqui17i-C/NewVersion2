@@ -1,4 +1,4 @@
-<h2 class="text-muted">Actualmente estas ubicado en este lugar: </h2>
+<h2 class="text-muted">Hola <em><b>{{user}}</b></em> actualmente estas ubicado en este lugar: </h2>
 <div class="row">
     <div class="col-md-12">
       <sebm-google-map
@@ -14,11 +14,17 @@
         (markerClick)="clickedMarker(m, i)"
         [latitude]="m.lat"
         [longitude]="m.lng"
+        [label]="m.label.charAt(0).toUpperCase()"
         [markerDraggable]=m.draggable
         (dragEnd)="markerDragEnd(m, $event)">
+
+
         <sebm-google-map-info-window>
-          <strong>Latitud: {{m.lat}}, </strong>
-          <strong> Longitud: {{m.lng}}</strong>
+         <!-- <strong>Latitud: {{m.lat}}, </strong>
+          <strong> Longitud: {{m.lng}}</strong>-->
+            <strong> Usuario: {{m.label}}</strong>
+            <br><br>
+            <button (click)="addOtherPlaces(m.lat, m.lng, m.label, $event)">Agregar a lugares por visitar</button>
         </sebm-google-map-info-window>
       </sebm-google-map-marker>
       </sebm-google-map>

@@ -1,6 +1,8 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { Headers, RequestOptions } from '@angular/http';
 import {SebmGoogleMap} from 'angular2-google-maps/core';
+import { SebmGoogleMapMarker } from 'angular2-google-maps/core';
+
 import {
   BrowserModule
 } from '@angular/platform-browser';
@@ -26,6 +28,8 @@ export class DashboardComponent implements OnInit {
     markerLat:string = null;
     markerLng:string =null;
     markerDraggable:string;
+
+    user = localStorage.getItem("email");
 
     placesMapi:PlacesMapi[];
 
@@ -58,6 +62,33 @@ export class DashboardComponent implements OnInit {
         this.requestService;
     }
 
+    addPlaceToVisit(latitude:string,length:string, label:string){
+
+
+        this.requestService.createPlacesToVisit(
+            'http://localhost:5005/places',
+            {
+                "email": label,
+                "latitude": latitude,
+                "length": length
+            },
+            new RequestOptions({ headers: new Headers({ 'Content-Type': 'application/json' }) })
+        )
+            .subscribe(
+                Plhaces=>{
+                    alert("el lugar ha sido guardado");
+                },
+                err => { console.log(err);}
+            )
+    }
+
+    addOtherPlaces( lat, lng, label) {
+        if ( label != localStorage.getItem("email") ) {
+            this.addPlaceToVisit(lat,lng,localStorage.getItem("email"));
+            alert("Se agrego el lugar a lugares por visitar")
+
+        }
+    }
 
     init(){
         this.requestService.getPlaces(
@@ -72,6 +103,7 @@ export class DashboardComponent implements OnInit {
                     for (let entry of this.placesMapi) {
                         //console.log("aqui Aqui aqui "+parseFloat(entry["latitude"])+" "+parseFloat( entry["length"] ) );
                         var newMarker= {
+                            label: entry["email"],
                              name:'Added',
                              lat: parseFloat(entry["latitude"]) ,
                              lng: parseFloat( entry["length"] ),
@@ -86,7 +118,9 @@ export class DashboardComponent implements OnInit {
     }
 
     clickedMarker(marker:marker, index:number){
+
     console.log('Clicked Marker: '+marker.name+' at index '+index);
+    //console.log(`clicked the marker: ${label || index}`);
     }
 
     addPlace(latitude:string,length:string){
@@ -133,7 +167,8 @@ export class DashboardComponent implements OnInit {
         }
 
       var newMarker= {
-        name: 'Unititled',
+          label: localStorage.getItem("email"),
+          name: 'Unititled',
         lat: $event.coords.lat,
         lng: $event.coords.lng,
         draggable:false
@@ -199,7 +234,8 @@ export class DashboardComponent implements OnInit {
 
 
 interface marker{
-  name?:string;
+    label?: string;
+    name?:string;
   lat: number;
   lng: number;
   draggable: boolean;
