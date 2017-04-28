@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import
+{ Component, OnInit } from '@angular/core';
 import {Places} from "./places";
 import {RequestService} from "../../request.service";
 import {Router} from "@angular/router";
@@ -28,7 +29,7 @@ export class TablesComponent implements OnInit {
                     // console.log('imprimiendo places=' + JSON.stringify(this.placesMapi ));
 
                     for (let entry of this.places) {
-                        
+
                         if(entry.email==localStorage.getItem("email") ){
                             var newPlace:Places = new Places(
                                 localStorage.getItem("email"),
